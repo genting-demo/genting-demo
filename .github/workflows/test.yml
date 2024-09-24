@@ -14,6 +14,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: HTTP Request Action
+        id: trigger_tests  # Assign an ID to reference the output
         uses: fjogeleit/http-request-action@v1.15.5
         with:
           url: "http://47.250.188.24:9122/ext/api/v2/processService/running?processServiceId=2447266450604288&accessKey=rYIwhLmN&signature=LZ151ICxz0CUloUdH6kjz7%2BAZZM%3D&signatureMethod=1.0"
@@ -24,4 +25,10 @@ jobs:
             {
               "Content-Type": "application/json"
             }
-          timeout: 10000  # Optional timeout in milliseconds (10 seconds)
+          timeout: 100000  # Optional timeout in milliseconds (100 seconds)
+
+      # Log the API response and status code
+      - name: Log API Response and Status Code
+        run: |
+          echo "Status Code: ${{ steps.trigger_tests.outputs.statusCode }}"
+          echo "Response: ${{ steps.trigger_tests.outputs.response }}"

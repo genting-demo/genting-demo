@@ -16,7 +16,7 @@ jobs:
       - name: Trigger External Process Service
         id: trigger_tests
         run: |
-          curl -X POST "http://172.16.43.249:9122/ext/api/v2/processService/running?processServiceId=2447266450604288&accessKey=rYIwhLmN&signature=LZ151ICxz0CUloUdH6kjz7%2BAZZM%3D&signatureMethod=1.0" \
+          curl -X POST "http://47.250.188.24:9122/ext/api/v2/processService/running?processServiceId=2447266450604288&accessKey=rYIwhLmN&signature=LZ151ICxz0CUloUdH6kjz7%2BAZZM%3D&signatureMethod=1.0" \
           -H "Content-Type: application/json" \
           -d '{
                 "params": [],

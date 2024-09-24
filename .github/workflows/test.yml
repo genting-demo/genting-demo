@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Trigger External Test Service
+        id: trigger_tests
+        run: |
+          curl -X POST https://your-api-endpoint.com/start-tests \
+          -H "Content-Type: application/json" \
+          -d '{"branch": "${{ github.ref }}", "commit": "${{ github.sha }}"}'
+
+      - name: Wait for external test service (Simulating pending state)
+        run: echo "Tests triggered, waiting for external service to report results."
